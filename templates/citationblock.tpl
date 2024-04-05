@@ -179,19 +179,21 @@ Teste:<br>
 <b>260= </b>{$doisMeiaZero}<br>
 <b>490= </b>{$quatroNoveZero}<br>
 <b>500= </b>{$cincoZeroZero}<br>
+{assign var="additionalAuthorsExport" value=""}
 {foreach from=$publication->getData('authors') item=author name=authorLoop}
     {if $smarty.foreach.authorLoop.index > 0}
         {assign var="surname" value=$author->getLocalizedFamilyName()|escape}
         {assign var="givenName" value=$author->getLocalizedGivenName()|escape}
         {assign var="orcid" value=$author->getOrcid()|default:''}
 
-       {if $orcid}
-        {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0{$orcid}4org"}
-    {else}
-        {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0 4org"}
-    {/if}
+        {if $orcid}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0{$orcid}4org"}
+        {else}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0 4org"}
+        {/if}
 
-        <b>700= </b>{$seteZeroZero}<br>
+        {assign var="additionalAuthorsExport" value="$additionalAuthorsExport{$seteZeroZero}"}
+		<b>700= </b>{$seteZeroZero}<br>
     {/if}
 {/foreach}
 <b>856a= </b>{$oitoCincoMeiaA}<br>
@@ -209,7 +211,7 @@ Teste:<br>
     document.addEventListener('DOMContentLoaded', function() {
         var downloadButton = document.getElementById('downloadButton');
         downloadButton.addEventListener('click', function() {
-var text = "00972nam 22000205a 4500 {$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$seteZeroZero|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
+var text = "00972nam 22000205a 4500 {$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$additionalAuthorsExport|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
 var fileName = 'ompBlock.mrc'; // Nome do arquivo a ser baixado
 
             var blob = new Blob([text], { type: 'text/plain' });
