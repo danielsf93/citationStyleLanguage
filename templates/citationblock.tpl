@@ -79,7 +79,7 @@ Teste:<br>
                 {/if}
             {/while}
         {/foreach}
-{assign var="zeroDoisZero" value="  a{if $isbn|trim}{$isbn}{else}{/if}"}
+{assign var="zeroDoisZero" value="  a{if $isbn|trim}{$isbn}{else}{/if}7 "}
 
 {assign var="zeroDoisQuatro" value="a{$publication->getStoredPubId('doi')|escape}2DOI"}
 
