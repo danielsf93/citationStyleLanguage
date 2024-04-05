@@ -164,6 +164,67 @@ Teste:<br>
 {assign var="noveQuatroCinco" value="aPbMONOGRAFIA/LIVROc06j2023lNACIONAL"}
 
 <hr>
+{*Organizar numeros*}
+{* Calculando o comprimento da variável $rec005 *}
+{assign var="rec005POS" value=0}
+{assign var="rec005CAR" value=sprintf('%04d', strlen($zeroZeroCinco) + $rec005POS)}
+{assign var="rec005" value="005"|cat:$rec005CAR|cat:sprintf('%05d', $rec005POS)}
+
+{* Calculando o comprimento da variável $rec008 *}
+{assign var="rec008POS" value=$rec005CAR + $rec005POS}
+{assign var="rec008CAR" value=sprintf('%04d', strlen($zeroZeroOito) + 0)}
+{assign var="rec008" value="008"|cat:$rec008CAR|cat:sprintf('%05d', $rec008POS)}
+
+{* Calculando o comprimento da variável $rec020 *}
+{assign var="rec020POS" value=$rec008CAR + $rec008POS}
+{assign var="rec020CAR" value=sprintf('%04d', strlen($zeroDoisZero) - 3)}
+{assign var="rec020" value="020"|cat:$rec020CAR|cat:sprintf('%05d', $rec020POS)}
+
+{* Calculando o comprimento da variável $rec024 *}
+{assign var="rec024POS" value=$rec020CAR + $rec020POS}
+{assign var="rec024CAR" value=sprintf('%04d', strlen($zeroDoisQuatro) + 3)}
+{assign var="rec024" value="024"|cat:$rec024CAR|cat:sprintf('%05d', $rec024POS)}
+
+{* Calculando o comprimento da variável $rec040 *}
+{assign var="rec040POS" value=$rec024CAR + $rec024POS}
+{assign var="rec040CAR" value=sprintf('%04d', strlen($zeroQuatroZero) - 3)}
+{assign var="rec040" value="040"|cat:$rec040CAR|cat:sprintf('%05d', $rec040POS)}
+
+{* Calculando o comprimento da variável $rec041 *}
+{assign var="rec041POS" value=$rec040CAR + $rec040POS}
+{assign var="rec041CAR" value=sprintf('%04d', strlen($zeroQuatroUm) + 0)}
+{assign var="rec041" value="041"|cat:$rec041CAR|cat:sprintf('%05d', $rec041POS)}
+
+{* Calculando o comprimento da variável $rec044 *}
+{assign var="rec044POS" value=$rec041CAR + $rec041POS}
+{assign var="rec044CAR" value=sprintf('%04d', strlen($zeroQuatroQuatro) + 0)}
+{assign var="rec044" value="044"|cat:$rec044CAR|cat:sprintf('%05d', $rec044POS)}
+
+{* Calculando o comprimento da variável $rec100 *}
+{assign var="rec100POS" value=$rec044CAR + $rec044POS}
+{assign var="rec100CAR" value=sprintf('%04d', strlen($umZeroZero) + 3)}
+{assign var="rec100" value="100"|cat:$rec100CAR|cat:sprintf('%05d', $rec100POS)}
+
+{* Calculando o comprimento da variável $rec245 *}
+{assign var="rec245POS" value=$rec100CAR + $rec100POS}
+{assign var="rec245CAR" value=sprintf('%04d', strlen($doisQuatroCinco) - 3)}
+{assign var="rec245" value="245"|cat:$rec245CAR|cat:sprintf('%05d', $rec245POS)}
+
+{*Mostrar numerais*}
+
+
+
+{$rec005}<br>
+{$rec008}<br>
+{$rec020}<br>
+{$rec024}<br>
+{$rec040}<br>
+{$rec041}<br>
+{$rec044}<br>
+{$rec100}<br>
+{$rec245}<br>
+
+<hr>
 {*Mostrar texto*}
 
 <b>LDR= </b><br>
@@ -200,7 +261,7 @@ Teste:<br>
 <b>856b= </b>{$oitoCincoMeiaB}<br>
 <b>945= </b>{$noveQuatroCinco}<br>
 
-{*Mostrar numerais*}
+
 
 
 
@@ -211,7 +272,7 @@ Teste:<br>
     document.addEventListener('DOMContentLoaded', function() {
         var downloadButton = document.getElementById('downloadButton');
         downloadButton.addEventListener('click', function() {
-var text = "00972nam 22000205a 4500 {$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$additionalAuthorsExport|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
+var text = "{$totalcaracteres}nam {$totalautores}a 4500 {$rec005|escape:'javascript'}{$rec008|escape:'javascript'}{$rec020|escape:'javascript'}{$rec024|escape:'javascript'}{$rec040|escape:'javascript'}{$rec041|escape:'javascript'}{$rec044|escape:'javascript'}{$rec100|escape:'javascript'}{$rec245|escape:'javascript'}{$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$additionalAuthorsExport|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
 var fileName = 'ompBlock.mrc'; // Nome do arquivo a ser baixado
 
             var blob = new Blob([text], { type: 'text/plain' });
