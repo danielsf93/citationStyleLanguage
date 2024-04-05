@@ -83,11 +83,11 @@ Teste:<br>
 
 {assign var="zeroDoisQuatro" value="a{$publication->getStoredPubId('doi')|escape}2DOI"}
 
-{assign var="zeroQuatroZero" value="  aUSP/ABCD"}
+{assign var="zeroQuatroZero" value="  aUSP/ABCD0 "}
 
 {assign var="zeroQuatroUm" value="apor  "}
 
-{assign var="zeroQuatroQuatro" value="abl1"}
+{assign var="zeroQuatroQuatro" value="abl1 "}
 
 {*umZeroZero*}
 {foreach from=$publication->getData('authors') item=author name=authorLoop}
@@ -118,9 +118,9 @@ Teste:<br>
     {/if}
 {/foreach}
 
-{assign var="doisQuatroCinco" value="10a{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}h[recurso eletrônico]  "}
+{assign var="doisQuatroCinco" value="10a{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}h[recurso eletrônico]  "}
 
-{assign var="zeroQuatroZero" value="  aUSP/ABCD"}
+{assign var="doisMeiaZero" value="a LOCALb{$publication->getLocalizedData('copyrightHolder')}c{$publication->getData('copyrightYear')}0 "}
 
 {assign var="quatroNoveZero" value=""}
 {if $series}
@@ -161,7 +161,7 @@ Teste:<br>
 
 {assign var="oitoCincoMeiaB" value="41zClicar sobre o botão para acesso ao texto completou{$downloadUrl}3Portal de Livros Abertos da USP  "}
 
-{assign var="noveQuatroCinco" value="aPbMONOGRAFIA/LIVROc06j2023lNACIONAL"}
+{assign var="noveQuatroCinco" value="aPbMONOGRAFIA/LIVROc06j2023lNACIONAL"}
 
 <hr>
 {*Mostrar texto*}
@@ -176,7 +176,7 @@ Teste:<br>
 <b>044= </b>{$zeroQuatroQuatro}<br>
 <b>100= </b>{$umZeroZero}<br>
 <b>245= </b>{$doisQuatroCinco}<br>
-<b>260= </b>{$zeroQuatroZero}<br>
+<b>260= </b>{$doisMeiaZero}<br>
 <b>490= </b>{$quatroNoveZero}<br>
 <b>500= </b>{$cincoZeroZero}<br>
 {foreach from=$publication->getData('authors') item=author name=authorLoop}
@@ -209,7 +209,7 @@ Teste:<br>
     document.addEventListener('DOMContentLoaded', function() {
         var downloadButton = document.getElementById('downloadButton');
         downloadButton.addEventListener('click', function() {
-var text = "00972nam 22000205a 4500 {$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$seteZeroZero|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
+var text = "00972nam 22000205a 4500 {$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$seteZeroZero|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
 var fileName = 'ompBlock.mrc'; // Nome do arquivo a ser baixado
 
             var blob = new Blob([text], { type: 'text/plain' });
