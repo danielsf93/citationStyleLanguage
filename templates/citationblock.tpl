@@ -115,11 +115,6 @@
 
     {assign var="doisQuatroCinco" value="10a{$publication->getLocalizedFullTitle()|escape}h[recurso eletrônico]  "}
 
-
-
-
-
-
 {assign var="doisMeiaZero" value="a {$local}b{$holder}c{$publication->getData('copyrightYear')}0 "}
 
 {assign var="quatroNoveZero" value=""}
@@ -143,15 +138,13 @@
 
     {assign var="cincoZeroZero" value="aDisponível em: http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}. Acesso em: {$smarty.now|date_format:"%d.%m.%Y"}"}
 
-{* Demais autores *}
+{* Demais autores texto*}
 {assign var="additionalAuthors" value=[]}
 {foreach $authors as $index => $author}
     {if $index != 0}
         {assign var="additionalAuthors" value=array_merge($additionalAuthors, [$author])}
     {/if}
 {/foreach}
-
-
 {assign var="additionalAuthorsExport" value=""}
 {foreach from=$publication->getData('authors') item=author name=authorLoop}
     {if $smarty.foreach.authorLoop.index > 0}
@@ -166,9 +159,10 @@
         {/if}
 
         {assign var="additionalAuthorsExport" value="$additionalAuthorsExport{$seteZeroZero}"}
-		<b>700= </b>{$seteZeroZero}<br>
+		
     {/if}
 {/foreach}
+
    
     {assign var="oitoCincoMeiaA" value="4 zClicar sobre o botão para acesso ao texto completouhttps://doi.org/{$publication->getStoredPubId('doi')|escape}3DOI"}
 
@@ -252,6 +246,17 @@
 {assign var="rec500" value="500"|cat:$rec500CAR|cat:sprintf('%05d', $rec500POS - 3)}
 
 
+
+
+
+
+
+
+
+
+
+
+
 {assign var="numAutoresAdicionais" value=count($additionalAuthors)}
 {assign var="rec700All" value=''} 
 
@@ -283,11 +288,69 @@
 {assign var="rec700All" value=str_replace(" ", "", $rec700All)}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+{assign var="additionalAuthorsExporter" value=""}
+{assign var="rec7uuAll" value=''}
+{assign var="firstAuthor" value=true}
+
+{foreach $publication->getData('authors') as $additionalAuthor}
+    {if !$firstAuthor}
+        {assign var="surname" value=$additionalAuthor->getLocalizedFamilyName()|escape}
+        {assign var="givenName" value=$additionalAuthor->getLocalizedGivenName()|escape}
+        {assign var="orcid" value=$additionalAuthor->getOrcid()|default:''}
+
+        {if $orcid}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0{$orcid}4org"}
+        {else}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0 4org"}
+        {/if}
+
+        {assign var="rec7uuCAR" value=str_replace(['-', ' '], '', sprintf('%04d', strlen($seteZeroZero)))}
+        {assign var="rec7uuPOS" value=sprintf('%05d', $rec500CAR + $rec500POS-3)}
+        {assign var="rec7uu" value="7uu{$rec7uuCAR}{$rec7uuPOS}"}
+
+        {assign var="additionalAuthorsExporter" value="$additionalAuthorsExporter{$rec7uu}"}
+
+        {$rec7uu}<br>
+        
+        {assign var="rec500POS" value=$rec7uuPOS}
+        {assign var="rec500CAR" value=str_replace(['-', ' '], '', sprintf('%04d', strlen($seteZeroZero) + 3))}
+        {assign var="rec7uuAll" value=$rec7uuAll|cat:$rec7uu} 
+    {else}
+        {assign var="firstAuthor" value=false}
+    {/if}
+{/foreach}
+
+{assign var="rec7uuAll" value=str_replace(" ", "", $rec7uuAll)}
+
+
+
+
+
+
+
+
+
+
+
+
 {assign var="rec856APOS" value=$rec500CAR + $rec500POS}
 {assign var="rec856ACAR" value=sprintf('%04d', strlen($oitoCincoMeiaA) - 1)}
 
 {if $numAutoresAdicionais > 0}
-    {assign var="rec856APOS" value=$rec700CAR + $rec700POS}
+    {assign var="rec856APOS" value=$recSetCAR + $recSetPOS}
     {assign var="rec856ACAR" value=sprintf('%04d', strlen($oitoCincoMeiaA) - 1)}
 {/if}
 
@@ -334,7 +397,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var downloadButton = document.getElementById('downloadButton');
         downloadButton.addEventListener('click', function() {
-            var text = "{$totalcaracteres}nam {$totalautores}a 4500 {$rec005|escape:'javascript'}{$rec008|escape:'javascript'}{$rec020|escape:'javascript'}{$rec024|escape:'javascript'}{$rec040|escape:'javascript'}{$rec041|escape:'javascript'}{$rec044|escape:'javascript'}{$rec100|escape:'javascript'}{$rec245|escape:'javascript'}{$rec260|escape:'javascript'}{$rec490|escape:'javascript'}{$rec500|escape:'javascript'}{$rec700All|escape:'javascript'}{$rec856A|escape:'javascript'}{$rec856B|escape:'javascript'}{$rec945|escape:'javascript'}{$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$additionalAuthorsExport|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
+            var text = "{$totalcaracteres}nam {$totalautores}a 4500 {$rec005|escape:'javascript'}{$rec008|escape:'javascript'}{$rec020|escape:'javascript'}{$rec024|escape:'javascript'}{$rec040|escape:'javascript'}{$rec041|escape:'javascript'}{$rec044|escape:'javascript'}{$rec100|escape:'javascript'}{$rec245|escape:'javascript'}{$rec260|escape:'javascript'}{$rec490|escape:'javascript'}{$rec500|escape:'javascript'}{$rec7uuAll|escape:'javascript'}{$recSetAll|escape:'javascript'}{$rec856A|escape:'javascript'}{$rec856B|escape:'javascript'}{$rec945|escape:'javascript'}{$zeroZeroCinco|escape:'javascript'}{$zeroZeroOito|escape:'javascript'}{$zeroDoisZero|escape:'javascript'}{$zeroDoisQuatro|escape:'javascript'}{$zeroQuatroZero|escape:'javascript'}{$zeroQuatroUm|escape:'javascript'}{$zeroQuatroQuatro|escape:'javascript'}{$umZeroZero|escape:'javascript'}{$doisQuatroCinco|escape:'javascript'}{$doisMeiaZero|escape:'javascript'}{$quatroNoveZero|escape:'javascript'}{$cincoZeroZero|escape:'javascript'}{$additionalAuthorsExport|escape:'javascript'}{$oitoCincoMeiaA|escape:'javascript'}{$oitoCincoMeiaB|escape:'javascript'}{$noveQuatroCinco|escape:'javascript'}";
             var fileName = 'omp.mrc'; // Nome do arquivo a ser baixado
 
             var blob = new Blob([text], { type: 'text/plain' });
