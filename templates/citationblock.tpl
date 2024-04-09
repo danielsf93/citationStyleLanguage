@@ -166,7 +166,7 @@
         {/if}
 
         {assign var="additionalAuthorsExport" value="$additionalAuthorsExport{$seteZeroZero}"}
-		
+		<b>700= </b>{$seteZeroZero}<br>
     {/if}
 {/foreach}
    
