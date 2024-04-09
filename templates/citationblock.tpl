@@ -151,25 +151,23 @@
     {/if}
 {/foreach}
 
+
 {assign var="additionalAuthorsExport" value=""}
+{foreach from=$publication->getData('authors') item=author name=authorLoop}
+    {if $smarty.foreach.authorLoop.index > 0}
+        {assign var="surname" value=$author->getLocalizedFamilyName()|escape}
+        {assign var="givenName" value=$author->getLocalizedGivenName()|escape}
+        {assign var="orcid" value=$author->getOrcid()|default:''}
 
-{foreach $additionalAuthors as $additionalAuthor}
-    {assign var="givenName" value=$additionalAuthor->getLocalizedGivenName()|escape}
-    {assign var="surname" value=$additionalAuthor->getLocalizedFamilyName()|escape}
-    {assign var="orcid" value=$additionalAuthor->getOrcid()|default:''}
-    {assign var="affiliation" value=$additionalAuthor->getLocalizedAffiliation()|default:''}
+        {if $orcid}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0{$orcid}4org"}
+        {else}
+            {assign var="seteZeroZero" value="1 a{$surname}, {$givenName}0 4org"}
+        {/if}
 
-    {assign var="authorExportString" value="1 a{$surname}, {$givenName}"} 
-
-    {if $orcid}
-        {assign var="authorExportString" value="$authorExportString0{$orcid}"}
-    {else}
-        {assign var="authorExportString" value="$authorExportString0 "} 
+        {assign var="additionalAuthorsExport" value="$additionalAuthorsExport{$seteZeroZero}"}
+		
     {/if}
-
-    {assign var="authorExportString" value="$authorExportString4org"} 
-
-    {assign var="additionalAuthorsExport" value="$additionalAuthorsExport$authorExportString"} 
 {/foreach}
    
     {assign var="oitoCincoMeiaA" value="4 zClicar sobre o botão para acesso ao texto completouhttps://doi.org/{$publication->getStoredPubId('doi')|escape}3DOI"}
@@ -302,6 +300,9 @@
 {assign var="rec945POS" value=$rec856BCAR + $rec856BPOS}
 {assign var="rec945CAR" value=sprintf('%04d', strlen($noveQuatroCinco) + 1)}
 {assign var="rec945" value="945"|cat:$rec945CAR|cat:sprintf('%05d', $rec945POS - 3)}
+
+
+
 
 
 
