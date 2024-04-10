@@ -319,7 +319,7 @@
 
         {assign var="rec7uuCAR" value=str_replace(['-', ' '], '', sprintf('%04d', strlen($seteZeroZero)))}
         {assign var="rec7uuPOS" value=sprintf('%05d', $rec500CAR + $rec500POS-3)}
-        {assign var="rec7uu" value="7uu{$rec7uuCAR}{$rec7uuPOS}"}
+        {assign var="rec7uu" value="700{$rec7uuCAR}{$rec7uuPOS}"}
 
         {assign var="additionalAuthorsExporter" value="$additionalAuthorsExporter{$rec7uu}"}
 
@@ -389,8 +389,9 @@
    
 </style>
 
-{assign var="numAutoresAdicionais" value=$additionalAuthors|count}
-{assign var="totalautores" value=22000205+($numAutoresAdicionais*12)}
+{$authors=$publication->getData('authors')}
+{$totalAuthors = $authors|@count}
+{assign var="totalautores" value=22000193+($totalAuthors*12)}
 {assign var="totalcaracteres" value=sprintf('%05d', strlen($zeroZeroCinco) + strlen($zeroZeroOito) + strlen($zeroDoisZero) + strlen($zeroDoisQuatro) + strlen($zeroQuatroZero) + strlen($zeroQuatroUm) + strlen($zeroQuatroQuatro) + strlen($umZeroZero) + strlen($doisQuatroCinco) + strlen($doisMeiaZero) + strlen($quatroNoveZero) + strlen($cincoZeroZero) + strlen($additionalAuthorsExport) + strlen($oitoCincoMeiaA) + strlen($oitoCincoMeiaB) + strlen($noveQuatroCinco) + 169)}
 
 <script>
