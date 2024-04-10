@@ -48,7 +48,11 @@
 			</div>
 		</section>
 	</div>
-
+<style>
+    .marc {
+        text-align: center;
+    }
+</style>
 
 <div class="marc">  
       
@@ -115,8 +119,97 @@
 
     {assign var="doisQuatroCinco" value="10a{$publication->getLocalizedFullTitle()|escape}h[recurso eletrônico]  "}
 
-{assign var="doisMeiaZero" value="a {$local}b{$holder}c{$publication->getData('copyrightYear')}0 "}
+{* Obter Cidade pelo Copyright *}
+{assign var="copyrightHolder" value=$publication->getLocalizedData('copyrightHolder')}
+{assign var="local" value="LOCAL"} 
 
+{if $copyrightHolder == "Universidade de São Paulo. Escola de Artes, Ciências e Humanidades" || $copyrightHolder == "Universidade de São Paulo. Escola de Artes, Ciências e Humanidades "
+|| $copyrightHolder == "Universidade de São Paulo. Escola de Comunicações e Artes" || $copyrightHolder == "Universidade de São Paulo. Escola de Comunicações e Artes "
+|| $copyrightHolder == "Universidade de São Paulo. Escola de Educação Física e Esporte" || $copyrightHolder == "Universidade de São Paulo. Escola de Educação Física e Esporte "
+|| $copyrightHolder == "Universidade de São Paulo. Escola de Enfermagem" || $copyrightHolder == "Universidade de São Paulo. Escola de Enfermagem "
+|| $copyrightHolder == "Universidade de São Paulo. Escola Politécnica" || $copyrightHolder == "Universidade de São Paulo. Escola Politécnica "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Arquitetura e Urbanismo" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Arquitetura e Urbanismo "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Ciências Farmacêuticas" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Ciências Farmacêuticas "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Direito" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Direito "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Economia, Administração e Contabilidade" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Economia, Administração e Contabilidade "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Educação" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Educação "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Filosofia, Letras e Ciências Humanas" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Filosofia, Letras e Ciências Humanas "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina Veterinária e Zootecnia" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina Veterinária e Zootecnia "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Saúde Pública" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Saúde Pública "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Astronomia, Geofísica e Ciências Atmosféricas" || $copyrightHolder == "Universidade de São Paulo. Instituto de Astronomia, Geofísica e Ciências Atmosféricas "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Biociências" || $copyrightHolder == "Universidade de São Paulo. Instituto de Biociências "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Ciências Biomédicas" || $copyrightHolder == "Universidade de São Paulo. Instituto de Ciências Biomédicas "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Energia e Ambiente" || $copyrightHolder == "Universidade de São Paulo. Instituto de Energia e Ambiente "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Estudos Avançados" || $copyrightHolder == "Universidade de São Paulo. Instituto de Estudos Avançados "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Estudos Brasileiros" || $copyrightHolder == "Universidade de São Paulo. Instituto de Estudos Brasileiros "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Física" || $copyrightHolder == "Universidade de São Paulo. Instituto de Física "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Geociências" || $copyrightHolder == "Universidade de São Paulo. Instituto de Geociências "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Matemática e Estatística" || $copyrightHolder == "Universidade de São Paulo. Instituto de Matemática e Estatística "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Medicina Tropical de São Paulo" || $copyrightHolder == "Universidade de São Paulo. Instituto de Medicina Tropical de São Paulo "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Psicologia" || $copyrightHolder == "Universidade de São Paulo. Instituto de Psicologia "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Química" || $copyrightHolder == "Universidade de São Paulo. Instituto de Química "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto de Relações Internacionais" || $copyrightHolder == "Universidade de São Paulo. Instituto de Relações Internacionais "
+|| $copyrightHolder == "Universidade de São Paulo. Instituto Oceanográfico" || $copyrightHolder == "Universidade de São Paulo. Instituto Oceanográfico "
+|| $copyrightHolder == "Universidade de São Paulo. Museu de Arqueologia e Etnografia" || $copyrightHolder == "Universidade de São Paulo. Museu de Arqueologia e Etnografia "
+|| $copyrightHolder == "Universidade de São Paulo. Museu de Arte Contemporânea" || $copyrightHolder == "Universidade de São Paulo. Museu de Arte Contemporânea "
+|| $copyrightHolder == "Universidade de São Paulo. Museu Paulista" || $copyrightHolder == "Universidade de São Paulo. Museu Paulista "
+|| $copyrightHolder == "Universidade de São Paulo. Museu de Zoologia" || $copyrightHolder == "Universidade de São Paulo. Museu de Zoologia "
+ }
+    {assign var="local" value="São Paulo"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia de Bauru" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia de Bauru "
+|| $copyrightHolder == "Universidade de São Paulo. Hospital de Reabilitação de Anomalias Craniofaciais" || $copyrightHolder == "Universidade de São Paulo. Hospital de Reabilitação de Anomalias Craniofaciais "
+}
+    {assign var="local" value="Bauru"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Escola de Engenharia de Lorena" || $copyrightHolder == "Universidade de São Paulo. Escola de Engenharia de Lorena "
+}
+    {assign var="local" value="Lorena"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Centro de Energia Nuclear na Agricultura" || $copyrightHolder == "Universidade de São Paulo. Centro de Energia Nuclear na Agricultura "
+|| $copyrightHolder == "Universidade de São Paulo. Escola Superior de Agricultura Luiz de Queiroz" || $copyrightHolder == "Universidade de São Paulo. Escola Superior de Agricultura Luiz de Queiroz "
+}
+    {assign var="local" value="Piracicaba"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Faculdade de Zootecnia e Engenharia de Alimentos" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Zootecnia e Engenharia de Alimentos "
+}
+    {assign var="local" value="Pirassununga"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Escola de Educação Física e Esporte de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Escola de Educação Física e Esporte de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Escola de Enfermagem de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Escola de Enfermagem de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Ciências Farmacêuticas de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Ciências Farmacêuticas de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Direito de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Direito de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Medicina de Ribeirão Preto "
+|| $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia de Ribeirão Preto" || $copyrightHolder == "Universidade de São Paulo. Faculdade de Odontologia de Ribeirão Preto "
+}
+    {assign var="local" value="Ribeirão Preto"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo. Departamento de Engenharia de Minas e Petróleo" || $copyrightHolder == "Universidade de São Paulo. Departamento de Engenharia de Minas e Petróleo "
+}
+    {assign var="local" value="Santos"}
+
+{elseif $copyrightHolder == "Universidade de São Paulo.  Escola de Engenharia de São Carlos" || $copyrightHolder == "Universidade de São Paulo.  Escola de Engenharia de São Carlos "
+|| $copyrightHolder == "Universidade de São Paulo.  Instituto de Arquitetura e Urbanismo" || $copyrightHolder == "Universidade de São Paulo.  Instituto de Arquitetura e Urbanismo "
+|| $copyrightHolder == "Universidade de São Paulo.  Instituto de Ciências Matemáticas e de Computação" || $copyrightHolder == "Universidade de São Paulo.  Instituto de Ciências Matemáticas e de Computação "
+|| $copyrightHolder == "Universidade de São Paulo.  Instituto de Física de São Carlos" || $copyrightHolder == "Universidade de São Paulo.  Instituto de Física de São Carlos "
+|| $copyrightHolder == "Universidade de São Paulo.  Instituto de Química de São Carlos" || $copyrightHolder == "Universidade de São Paulo.  Instituto de Química de São Carlos "
+}
+    {assign var="local" value="São Carlos"}
+
+{else}
+    {assign var="local" value=""}
+{/if}
+
+{assign var="holder" value=$publication->getLocalizedData('copyrightHolder')}
+{if $holder|strstr:'Universidade de São Paulo. '}
+    {assign var="holder" value=$holder|replace:'Universidade de São Paulo. ':''}
+{/if}
+
+{assign var="doisMeiaZero" value="a {$local}b{$holder}c{$publication->getData('copyrightYear')}0 "}
 {assign var="quatroNoveZero" value=""}
 {if $series}
     {assign var="seriesTitle" value=$series->getLocalizedFullTitle()}
@@ -136,7 +229,7 @@
 {assign var="quatroNoveZero" value=$quatroNoveZero|cat:"  "}
 
 
-    {assign var="cincoZeroZero" value="aDisponível em: http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}. Acesso em: {$smarty.now|date_format:"%d.%m.%Y"}"}
+    {assign var="cincoZeroZero" value="aDisponível em: https://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}. Acesso em: {$smarty.now|date_format:"%d.%m.%Y"}"}
 
 {* Demais autores texto*}
 {assign var="additionalAuthors" value=[]}
@@ -323,7 +416,7 @@
 
         {assign var="additionalAuthorsExporter" value="$additionalAuthorsExporter{$rec7uu}"}
 
-        {$rec7uu}<br>
+       
         
         {assign var="rec500POS" value=$rec7uuPOS}
         {assign var="rec500CAR" value=str_replace(['-', ' '], '', sprintf('%04d', strlen($seteZeroZero) + 3))}
@@ -370,21 +463,25 @@
 
 
  
-    <button id="downloadButton" class="botao">Baixar Arquivo MARC</button>
+    <button id="downloadButton" class="botao">Baixar Registro MARC</button>
 	
 
 <style>
  
     #downloadButton {
-		font-weight: bold;
-        padding: 5px 18px; /* Espaçamento interno */
-        background-color: #ececec; /* Cor de fundo */
-        color: #076fb1; /* Cor do texto */
-        border: 100; /* Remover borda */
-        border-radius: 5px; /* Bordas arredondadas */
-        cursor: pointer; /* Cursor ao passar por cima */
-    
-    }
+    font-weight: bold;
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #076fb1; /* Cor de fundo */
+    color: #ffffff; /* Cor do texto */
+    border: none; /* Remover borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor ao passar por cima */
+    transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+#downloadButton:hover {
+    background-color: #055a85; /* Mudar a cor de fundo ao passar o mouse */
+}
 
    
 </style>
